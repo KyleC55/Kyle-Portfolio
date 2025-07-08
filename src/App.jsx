@@ -13,7 +13,7 @@ const Navbar = () => {
             <h1 className="text-3xl font-bold">
                 Kyle Chen
             </h1>
-            <ul className="flex space-x-4 font-bold hidden">
+            <ul className="space-x-4 font-bold hidden lg:flex">
                 <li className="flex items-center space-x-1 p-4">
                     <span> About </span>
                     <span> Me </span>
@@ -25,7 +25,7 @@ const Navbar = () => {
                     <span> Info </span>
                 </li>
             </ul>
-            <div onClick={handleNav} className='block md:hidden'>
+            <div onClick={handleNav} className='block lg:hidden'>
                 {!nav ? <AiOutlineMenu size={20}/> : <AiOutlineClose size={20} className="text-[#e0aaff]" />}
                 <div className={`fixed top-0 left-0 h-screen bg-black transform ${nav ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out w-[200px] z-50`}>
                     <h1 className="text-3xl font-bold m-8">
