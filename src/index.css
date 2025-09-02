@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap');
 @import "tailwindcss";
 
 @theme{
-    --font-primary: 'Press Start 2P', cursive;
+    --font-primary: 'Press Start 2P', system-ui;
+    --font-secondary: 'VT323', monospace;
+    --font-tertiary: 'Aldrich', san-serif;
+    --font-cursive: 'Orbitron', sans-serif;
 }
 
+
+body{
+    background: #000000;
+}
