@@ -3,19 +3,24 @@ import {useState} from "react";
 
 const projects = [
     {
-        title: "Network Topology",
+        title: "Classification of Mathematical Problems",
         description:
-            "Using Python for the backend and JavaScript for the display, my team of four built a network topology visualization for our Computer Networking class. We loaded in IP addresses and displayed hop counts on an Earth globe. A legend indicates hop types, such as ICMP, TCP, and UDP."
+            "Curated and annotated a ~1,000-problem multi-label dataset and evaluated text classification models for prompt routing. Compared BERT-based and character-level CNN approaches on symbolic, formula-heavy inputs and analyzed per-label performance."
     },
     {
-        title: "Frontend Development",
+        title: "Visualization Traceroute",
         description:
-            "Using React, Tailwind, and Framer Motion, I created my portfolio website. This project helped me learn fundamental front-end development concepts while producing a clean, responsive layout."
+            "Built a network visualization tool with Python, JavaScript, and HTML to map traceroute hops on an interactive world map. Integrated Google Earth 3D for geographic path and latency visualization."
+    },
+    {
+        title: "Responsive Portfolio Website",
+        description:
+            "Implemented a personal website with React, Tailwind, and Framer Motion to deliver smooth page transitions, clean layout, and responsive design."
     },
     {
         title: "Chat System",
         description:
-            "Using Python and libraries such as `socket`, I built a basic chat system and integrated a Tic-Tac-Toe game for two users to play in real time."
+            "Developed a real-time chat app using Python and Socket.IO with multi-user support, authentication, and an embedded tic-tac-toe game within chat sessions."
     }
 ];
 

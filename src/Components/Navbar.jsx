@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
-import { NavLink } from "react-router";
 
 
 
@@ -13,35 +12,47 @@ const Navbar = () => {
     }
 
     return (
-        <div className="text-gray-200 bg-[#000000] justify-between flex h-full w-full items-center font-bold  px-4">
+        <div className="fixed top-0 left-0 z-50 w-full text-gray-200 bg-black/70 backdrop-blur flex items-center justify-between h-16 px-6">
             <h1 className="text-3xl font-bold sm:text-2xl sm:justify-center">
                 Kyle Chen
             </h1>
             <ul className="space-x-4 font-bold hidden lg:flex ">
-                <NavLink to='/aboutme' className="flex items-center space-x-1 p-4">
+                <a
+                    href="#about"
+                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
+                >
                     <li>
                         <span> About </span>
                         <span> Me </span>
                     </li>
-                </NavLink>
+                </a>
 
-                <NavLink to='/projects' className="flex items-center space-x-1 p-4">
+                <a
+                    href="#projects"
+                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
+                >
                     <li className="p-4 items-center flex">
                         Projects
                     </li>
-                </NavLink>
+                </a>
 
-                <NavLink to='/experience' className="flex items-center justify-between space-x-1 p-4">
+                <a
+                    href="#experience"
+                    className="flex items-center justify-between space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
+                >
                     <li>
                         Experience
                     </li>
-                </NavLink>
+                </a>
 
-                <NavLink to='/skills' className="flex items-center space-x-1 p-4">
+                <a
+                    href="#skills"
+                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
+                >
                 <li>
                     Skills
                 </li>
-                </NavLink>
+                </a>
             </ul>
 
             <div onClick={handleNav} className='block lg:hidden'>
@@ -51,18 +62,18 @@ const Navbar = () => {
                                     Kyle Chen
                                 </h1>
                                     <ul className="font-bold">
-                                        <NavLink to='/aboutme' className="flex items-center space-x-1 p-4 border-b">
+                                        <a href="#about" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
                                             <li><span> About </span><span> Me </span></li>
-                                        </NavLink>
-                                        <NavLink to='/projects' className="flex items-center space-x-1 p-4 border-b">
+                                        </a>
+                                        <a href="#projects" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
                                             <li>Projects</li>
-                                        </NavLink>
-                                        <NavLink to='/experience' className="flex items-center space-x-1 p-4 border-b">
+                                        </a>
+                                        <a href="#experience" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
                                             <li>Experience</li>
-                                        </NavLink>
-                                        <NavLink to='/skills' className="flex items-center space-x-1 p-4 border-b">
+                                        </a>
+                                        <a href="#skills" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
                                             <li> Skills</li>
-                                        </NavLink>
+                                        </a>
                                     </ul>
                             </div>
                         );
