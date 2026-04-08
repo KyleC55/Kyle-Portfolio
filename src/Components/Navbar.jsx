@@ -1,86 +1,81 @@
-import React, {useState} from "react";
-import {AiOutlineClose, AiOutlineMenu} from "react-icons/ai";
+import { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
+import { NAV_LINKS, PROFILE } from "@/constants/site";
 
+const linkClass =
+  "flex items-center p-4 rounded-lg text-white transition-all duration-200 " +
+  "hover:scale-105 hover:text-cyan-200 hover:[text-shadow:_0_0_12px_rgba(34,211,238,0.75),0_0_22px_rgba(56,189,248,0.35)]";
 
+export default function Navbar() {
+  const [navOpen, setNavOpen] = useState(false);
+  const closeNav = () => setNavOpen(false);
 
-const Navbar = () => {
-    const [nav, setNav] = useState(false)
+  return (
+    <header
+      className="fixed top-0 left-0 z-50 w-full flex items-center justify-between h-16 px-6
+        bg-black text-gray-100 border-b border-cyan-500/35
+        shadow-[0_1px_0_rgba(34,211,238,0.15),0_8px_32px_rgba(0,0,0,0.85)]"
+    >
+      <h1
+        className="text-2xl sm:text-3xl font-bold text-white tracking-tight shrink-0
+          [text-shadow:_0_0_14px_rgba(34,211,238,0.45)]"
+      >
+        {PROFILE.displayName}
+      </h1>
 
-    const handleNav = () => {
-        setNav(!nav)
-    }
+      <nav aria-label="Primary">
+        <ul className="hidden lg:flex gap-1 font-bold">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} className={linkClass}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-    return (
-        <div className="fixed top-0 left-0 z-50 w-full text-gray-200 bg-black/70 backdrop-blur flex items-center justify-between h-16 px-6">
-            <h1 className="text-3xl font-bold sm:text-2xl sm:justify-center">
-                Kyle Chen
-            </h1>
-            <ul className="space-x-4 font-bold hidden lg:flex ">
+      <button
+        type="button"
+        onClick={() => setNavOpen((open) => !open)}
+        className="block lg:hidden p-2 rounded-lg text-white border border-cyan-500/35 hover:border-cyan-400/70
+          hover:text-cyan-100 hover:shadow-[0_0_14px_rgba(34,211,238,0.3)] transition-all"
+        aria-expanded={navOpen}
+        aria-label="Toggle navigation menu"
+      >
+        {!navOpen ? (
+          <AiOutlineMenu size={22} />
+        ) : (
+          <AiOutlineClose size={22} className="text-cyan-100" />
+        )}
+      </button>
+
+      {navOpen && (
+        <div
+          className="fixed top-0 left-0 h-screen w-[min(100vw,280px)] bg-black border-r border-cyan-500/30 z-50
+            shadow-[4px_0_32px_rgba(0,0,0,0.9),0_0_40px_rgba(34,211,238,0.08)]"
+        >
+          <div className="p-6 border-b border-cyan-500/25">
+            <p className="text-xl font-bold text-white [text-shadow:_0_0_12px_rgba(34,211,238,0.4)]">
+              {PROFILE.displayName}
+            </p>
+          </div>
+          <ul className="font-bold pt-2">
+            {NAV_LINKS.map((link) => (
+              <li key={`mobile-${link.href}`}>
                 <a
-                    href="#about"
-                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
+                  href={link.href}
+                  onClick={closeNav}
+                  className="block px-6 py-4 border-b border-white/5 text-white hover:text-cyan-200 hover:bg-cyan-500/10 transition-colors"
                 >
-                    <li>
-                        <span> About </span>
-                        <span> Me </span>
-                    </li>
+                  {link.label}
                 </a>
-
-                <a
-                    href="#projects"
-                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
-                >
-                    <li className="p-4 items-center flex">
-                        Projects
-                    </li>
-                </a>
-
-                <a
-                    href="#experience"
-                    className="flex items-center justify-between space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
-                >
-                    <li>
-                        Experience
-                    </li>
-                </a>
-
-                <a
-                    href="#skills"
-                    className="flex items-center space-x-1 p-4 transition-transform duration-200 hover:scale-110 hover:text-[#e0aaff]"
-                >
-                <li>
-                    Skills
-                </li>
-                </a>
-            </ul>
-
-            <div onClick={handleNav} className='block lg:hidden'>
-                {!nav ? <AiOutlineMenu size={20}/> : <AiOutlineClose size={20} className="text-gray-200" />}
-                        <div className="fixed top-0 left-0 h-screen w-[200px] bg-black z-50" >
-                                <h1 className="text-3xl font-bold m-8 sm:text-xl sm:justify-center">
-                                    Kyle Chen
-                                </h1>
-                                    <ul className="font-bold">
-                                        <a href="#about" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
-                                            <li><span> About </span><span> Me </span></li>
-                                        </a>
-                                        <a href="#projects" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
-                                            <li>Projects</li>
-                                        </a>
-                                        <a href="#experience" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
-                                            <li>Experience</li>
-                                        </a>
-                                        <a href="#skills" className="flex items-center space-x-1 p-4 border-b transition-transform duration-200 hover:scale-105">
-                                            <li> Skills</li>
-                                        </a>
-                                    </ul>
-                            </div>
-                        );
-            </div>
+              </li>
+            ))}
+          </ul>
         </div>
-
-    );
-};
-
-export default Navbar;
+      )}
+    </header>
+  );
+}

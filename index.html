@@ -2,9 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/kc-logo.jpg" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kyle's Website</title>
+    <!-- Critical: first paint before Vite/CSS/JS — stops white flash -->
+    <style>
+      html {
+        background-color: #000000;
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background-color: #000000;
+        color: #ffffff;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+      #root {
+        background-color: #000000;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
