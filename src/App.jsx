@@ -6,16 +6,19 @@ import Skill from "@/Components/Skill.jsx";
 import Contact from "@/Components/Contact.jsx";
 import FloatingDock from "@/Components/FloatingDock.jsx";
 import CustomCursor from "@/Components/CustomCursor.jsx";
+import Footer from "@/Components/Footer.jsx";
+import SpaceBackground from "@/Components/SpaceBackground.jsx";
 
 import { SECTION } from "@/constants/site";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <SpaceBackground />
       <CustomCursor />
       <Navbar />
       <FloatingDock />
-      <main className="pt-20 pb-28 bg-black">
+      <main className="relative z-10 pt-20">
         <section id={SECTION.about} className="scroll-mt-24">
           <IntroCard />
         </section>
@@ -32,6 +35,7 @@ export default function App() {
           <Contact />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

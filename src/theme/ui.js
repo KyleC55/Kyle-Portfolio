@@ -4,7 +4,7 @@
  */
 
 export const ui = {
-  sectionScreen: "w-full bg-black text-white",
+  sectionScreen: "w-full text-white",
 
   /** max-width content column used on Skills, Experience, Contact */
   pageContainer: "max-w-4xl mx-auto px-6 md:px-10 py-20",
