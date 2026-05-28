@@ -18,8 +18,8 @@ export default function Navbar() {
         shadow-[0_1px_0_rgba(34,211,238,0.15),0_8px_32px_rgba(0,0,0,0.85)]"
     >
       <h1
-        className="text-2xl sm:text-3xl font-bold text-white tracking-tight shrink-0
-          [text-shadow:_0_0_14px_rgba(34,211,238,0.45)]"
+        className="text-2xl sm:text-3xl font-tertiary font-bold text-white tracking-wider shrink-0
+          [text-shadow:_0_0_8px_#fff,_0_0_20px_rgba(255,255,255,0.7),_0_0_40px_rgba(255,255,255,0.3)]"
       >
         {PROFILE.displayName}
       </h1>
