@@ -14,7 +14,7 @@ export default function Experience() {
           {experiences.map((exp) => (
             <article
               key={`${exp.company}-${exp.role}`}
-              className="bg-[#111] border border-[#2a2a2a] rounded-2xl p-6 shadow-[0_0_20px_rgba(34,211,238,0.1)]"
+              className="bg-[#111] border border-[#2a2a2a] rounded-2xl p-6 border-l-2 border-l-purple-500/60 shadow-[0_0_20px_rgba(168,85,247,0.12)]"
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                 <div>

@@ -5,12 +5,14 @@ import Experience from "@/Pages/experience.jsx";
 import Skill from "@/Components/Skill.jsx";
 import Contact from "@/Components/Contact.jsx";
 import FloatingDock from "@/Components/FloatingDock.jsx";
+import CustomCursor from "@/Components/CustomCursor.jsx";
 
 import { SECTION } from "@/constants/site";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <CustomCursor />
       <Navbar />
       <FloatingDock />
       <main className="pt-20 pb-28 bg-black">

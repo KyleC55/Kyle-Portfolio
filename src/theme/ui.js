@@ -4,21 +4,21 @@
  */
 
 export const ui = {
-  sectionScreen: "w-full min-h-screen bg-black text-white",
+  sectionScreen: "w-full bg-black text-white",
 
   /** max-width content column used on Skills, Experience, Contact */
-  pageContainer: "max-w-5xl mx-auto px-6 py-20",
+  pageContainer: "max-w-4xl mx-auto px-6 md:px-10 py-20",
 
   /** Pixel heading style (Press Start 2P) */
   sectionHeading:
-    "text-cyan-300 text-4xl md:text-5xl font-bold font-primary [text-shadow:_0_0_20px_rgba(34,211,238,0.35)]",
+    "text-purple-300 text-3xl md:text-4xl font-bold font-primary [text-shadow:_0_0_20px_rgba(168,85,247,0.45)]",
 
   sectionIntro: "text-gray-300 mt-3 max-w-2xl",
 
   introReadable: "text-gray-200 mt-3 max-w-2xl",
 
-  neonHeadingContact: `font-bold font-primary text-4xl md:text-5xl
-    [text-shadow:_0_0_2px_#22d3ee,_0_0_14px_rgba(34,211,238,0.5)] text-white`,
+  neonHeadingContact: `font-bold font-primary text-3xl md:text-4xl text-purple-300
+    [text-shadow:_0_0_2px_#d8b4fe,_0_0_14px_rgba(168,85,247,0.5)]`,
 
   formPanel:
     "mt-10 bg-[#111] border border-[#2a2a2a] rounded-2xl p-6 md:p-8 shadow-[0_0_20px_rgba(34,211,238,0.12)]",

@@ -33,7 +33,7 @@ export default function ProjectTabs() {
         <h2 className="text-2xl font-bold text-white [text-shadow:_0_0_14px_rgba(34,211,238,0.4)]">
           {activeProject.title}
         </h2>
-        <p className="text-sm text-cyan-100/80 mt-1 [text-shadow:_0_0_10px_rgba(56,189,248,0.35)]">
+        <p className="text-sm text-purple-200/80 mt-1 [text-shadow:_0_0_10px_rgba(168,85,247,0.4)]">
           {activeProject.subtitle}
         </p>
         <p className="text-gray-200 mt-4">{activeProject.description}</p>
@@ -45,13 +45,13 @@ export default function ProjectTabs() {
               className={`relative pl-4 py-2.5 rounded-lg border bg-black/40 backdrop-blur-sm
                 ${
                   i % 2 === 0
-                    ? "border-cyan-400/50 text-cyan-50 [text-shadow:_0_0_14px_rgba(34,211,238,0.55),0_0_24px_rgba(56,189,248,0.2)] shadow-[0_0_20px_rgba(34,211,238,0.14)]"
-                    : "border-sky-400/45 text-sky-50 [text-shadow:_0_0_14px_rgba(56,189,248,0.5),0_0_24px_rgba(34,211,238,0.15)] shadow-[0_0_20px_rgba(14,165,233,0.12)]"
+                    ? "border-cyan-400/50 text-cyan-50 [text-shadow:_0_0_14px_rgba(34,211,238,0.55)] shadow-[0_0_20px_rgba(34,211,238,0.14)]"
+                    : "border-purple-400/50 text-purple-50 [text-shadow:_0_0_14px_rgba(168,85,247,0.55)] shadow-[0_0_20px_rgba(168,85,247,0.14)]"
                 }`}
             >
               <span
                 className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-[70%] rounded-full ${
-                  i % 2 === 0 ? "bg-cyan-400 shadow-[0_0_12px_#22d3ee]" : "bg-sky-400 shadow-[0_0_12px_#38bdf8]"
+                  i % 2 === 0 ? "bg-cyan-400 shadow-[0_0_12px_#22d3ee]" : "bg-purple-400 shadow-[0_0_12px_#c084fc]"
                 }`}
                 aria-hidden
               />

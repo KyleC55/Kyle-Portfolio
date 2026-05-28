@@ -5,7 +5,7 @@ import ProjectTabs from "@/Components/ProjectTabs.jsx";
 
 export default function ProjectPage() {
   return (
-    <div className="max-w-[1000px] w-full min-h-screen mx-auto flex flex-col items-center justify-start px-6 pt-28 text-white gap-6">
+    <div className="max-w-4xl w-full mx-auto flex flex-col items-center justify-start px-6 md:px-10 py-20 text-white gap-6">
       <h1
         className="text-5xl sm:text-6xl font-cursive font-bold text-center text-white
           [text-shadow:_0_0_4px_#22d3ee,_0_0_12px_rgba(34,211,238,0.55),_0_0_24px_rgba(56,189,248,0.28)]"

@@ -1,5 +1,16 @@
 export const projects = [
   {
+    title: "Better Albert",
+    subtitle: "Software Engineering Project · Apr 2026 - May 2026",
+    description:
+      "A full-stack course-planning platform that streamlines academic planning through course scraping, degree requirement tracking, calendar export, and AI-powered schedule recommendations.",
+    highlights: [
+      "Built a scraper to aggregate course listings, major requirements, and graduation requirements.",
+      "Enabled students to compare classes and plan schedules more efficiently.",
+    ],
+    links: [{ label: "GitHub", href: "https://github.com/KyleC55", type: "github" }],
+  },
+  {
     title: "Classification of Mathematical Problems",
     subtitle: "NLP Research Project · Oct 2025 - Dec 2025",
     description:

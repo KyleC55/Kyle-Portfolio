@@ -25,11 +25,11 @@ export default function Skill() {
                   <span
                     key={item}
                     className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-shadow duration-200
-                      hover:shadow-[0_0_18px_rgba(34,211,238,0.35)]
+                      hover:shadow-[0_0_18px_rgba(168,85,247,0.3)]
                       ${
                         i % 2 === 0
                           ? "bg-cyan-950/50 border-cyan-400/55 text-cyan-100 [text-shadow:_0_0_10px_rgba(34,211,238,0.5)]"
-                          : "bg-sky-950/40 border-sky-400/50 text-sky-100 [text-shadow:_0_0_10px_rgba(56,189,248,0.48)]"
+                          : "bg-purple-950/40 border-purple-400/50 text-purple-100 [text-shadow:_0_0_10px_rgba(168,85,247,0.5)]"
                       }`}
                   >
                     {item}

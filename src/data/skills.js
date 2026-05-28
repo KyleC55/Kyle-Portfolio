@@ -4,15 +4,15 @@ export const skillGroups = [
     items: ["Python", "C", "JavaScript", "TypeScript", "SQL", "HTML/CSS"],
   },
   {
-    title: "Frameworks & Libraries",
-    items: ["React", "Node.js", "GraphQL", "Apollo Client", "Vite", "Luxon"],
+    title: "Frameworks",
+    items: ["React", "React Native", "NestJS", "Node.js", "Vite"],
   },
   {
-    title: "Infrastructure & Security",
-    items: ["Docker", "Docker Compose", "Keycloak", "OAuth 2.0", "OpenID Connect", "JWT", "Azure"],
+    title: "Databases",
+    items: ["MongoDB", "MySQL"],
   },
   {
-    title: "Databases, APIs & Tools",
-    items: ["MySQL", "Stripe API", "Airtable", "Git"],
+    title: "Tools & Technologies",
+    items: ["GraphQL", "Apollo Client", "Docker", "Git", "Luxon", "Stripe API", "Airtable", "Azure", "Google APIs"],
   },
 ];
