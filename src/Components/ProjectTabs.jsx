@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiFillGithub, AiOutlineLink } from "react-icons/ai";
+import { AiFillGithub, AiOutlineLink, AiOutlineFilePdf } from "react-icons/ai";
 
 import { projects } from "@/data/projects";
 
@@ -69,7 +69,13 @@ export default function ProjectTabs() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#3a3a3a] hover:border-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              {link.type === "github" ? <AiFillGithub /> : <AiOutlineLink />}
+              {link.type === "github" ? (
+                <AiFillGithub />
+              ) : link.type === "pdf" ? (
+                <AiOutlineFilePdf />
+              ) : (
+                <AiOutlineLink />
+              )}
               {link.label}
             </a>
           ))}
