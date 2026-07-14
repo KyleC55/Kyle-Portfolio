@@ -41,7 +41,31 @@ function countryName(code) {
   }
 }
 
-/* ---------- data hook ---------- */
+/* ---------- hooks ---------- */
+
+/** True once the element has scrolled near the viewport (stays true after). */
+function useInView(margin = "200px") {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: margin }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [inView, margin]);
+
+  return [ref, inView];
+}
 
 function useVisitorStats() {
   const [counts, setCounts] = useState(null);
@@ -116,10 +140,7 @@ function Marker({ position, scale, phase }) {
 
 function Globe({ counts }) {
   const groupRef = useRef();
-  const [colorMap, bumpMap] = useLoader(THREE.TextureLoader, [
-    "/textures/earth-blue-marble.jpg",
-    "/textures/earth-topology.png",
-  ]);
+  const colorMap = useLoader(THREE.TextureLoader, "/textures/earth-blue-marble.jpg");
 
   useFrame((_, delta) => {
     if (groupRef.current) groupRef.current.rotation.y += delta * 0.08;
@@ -143,11 +164,9 @@ function Globe({ counts }) {
     <group ref={groupRef}>
       {/* textured earth */}
       <mesh>
-        <sphereGeometry args={[GLOBE_RADIUS, 96, 96]} />
+        <sphereGeometry args={[GLOBE_RADIUS, 64, 64]} />
         <meshStandardMaterial
           map={colorMap}
-          bumpMap={bumpMap}
-          bumpScale={0.04}
           emissiveMap={colorMap}
           emissive="#88aaff"
           emissiveIntensity={0.18}
@@ -233,6 +252,7 @@ function Legend({ counts }) {
 
 export default function VisitorGlobe() {
   const counts = useVisitorStats();
+  const [panelRef, inView] = useInView();
 
   return (
     <div className="max-w-6xl mx-auto px-6 md:px-10 py-20 text-white">
@@ -242,28 +262,35 @@ export default function VisitorGlobe() {
       </p>
 
       <div className="mt-10 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
-        <div className="relative h-[420px] md:h-[560px] w-full rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)]">
-          <Canvas
-            dpr={[1, 2]}
-            camera={{ position: [0, 0, 5.2], fov: 45 }}
-            gl={{ antialias: true, alpha: true }}
-          >
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 3, 5]} intensity={1.6} color="#e8eeff" />
-            <pointLight position={[-6, -2, -4]} color="#a855f7" intensity={0.7} distance={20} />
-            {/* Render the globe right away; markers appear once stats arrive. */}
-            <Suspense fallback={null}>
-              <Globe counts={counts || {}} />
-            </Suspense>
-            <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              rotateSpeed={0.5}
-            />
-          </Canvas>
+        <div
+          ref={panelRef}
+          className="relative h-[420px] md:h-[560px] w-full rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)]"
+        >
+          {/* Mount the WebGL globe only once scrolled near view — keeps the
+              texture + GPU work off the initial page load. */}
+          {inView && (
+            <Canvas
+              dpr={[1, 2]}
+              camera={{ position: [0, 0, 5.2], fov: 45 }}
+              gl={{ antialias: true, alpha: true }}
+            >
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[5, 3, 5]} intensity={1.6} color="#e8eeff" />
+              <pointLight position={[-6, -2, -4]} color="#a855f7" intensity={0.7} distance={20} />
+              {/* Render the globe right away; markers appear once stats arrive. */}
+              <Suspense fallback={null}>
+                <Globe counts={counts || {}} />
+              </Suspense>
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                rotateSpeed={0.5}
+              />
+            </Canvas>
+          )}
 
-          {/* Loading overlay — fades out once stats resolve. */}
-          {counts === null && (
+          {/* Loading spinner until the globe is mounted and stats resolve. */}
+          {(!inView || counts === null) && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="flex items-center gap-3 rounded-full bg-black/40 px-4 py-2 backdrop-blur-sm">
                 <span className="h-3 w-3 rounded-full border-2 border-cyan-400/40 border-t-cyan-300 animate-spin" />
