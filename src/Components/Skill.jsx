@@ -10,7 +10,7 @@ export default function Skill() {
           A quick overview of the languages, tools, and technologies I use in production and project work.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-10">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 items-stretch">
           {skillGroups.map((group) => (
             <div
               key={group.title}

@@ -11,8 +11,4 @@ export const skillGroups = [
     title: "Databases",
     items: ["MongoDB", "MySQL"],
   },
-  {
-    title: "Tools & Technologies",
-    items: ["GraphQL", "Apollo Client", "Docker", "Git", "Luxon", "Stripe API", "Airtable", "Azure", "Google APIs"],
-  },
 ];

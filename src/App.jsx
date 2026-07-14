@@ -3,6 +3,7 @@ import IntroCard from "@/Components/IntroCard.jsx";
 import ProjectPage from "@/Components/ProjectPage.jsx";
 import Experience from "@/Pages/experience.jsx";
 import Skill from "@/Components/Skill.jsx";
+import VisitorGlobe from "@/Components/VisitorGlobe.jsx";
 import Contact from "@/Components/Contact.jsx";
 import FloatingDock from "@/Components/FloatingDock.jsx";
 import CustomCursor from "@/Components/CustomCursor.jsx";
@@ -30,6 +31,9 @@ export default function App() {
         </section>
         <section id={SECTION.skills} className="scroll-mt-24">
           <Skill />
+        </section>
+        <section id={SECTION.visitors} className="scroll-mt-24">
+          <VisitorGlobe />
         </section>
         <section id={SECTION.contact} className="scroll-mt-24">
           <Contact />

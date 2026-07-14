@@ -21,6 +21,7 @@ export const SECTION = {
   projects: "projects",
   experience: "experience",
   skills: "skills",
+  visitors: "visitors",
   contact: "contact",
 };
 
@@ -29,6 +30,7 @@ export const NAV_LINKS = [
   { href: `#${SECTION.projects}`, label: "Projects" },
   { href: `#${SECTION.experience}`, label: "Experience" },
   { href: `#${SECTION.skills}`, label: "Skills" },
+  { href: `#${SECTION.visitors}`, label: "Visitors" },
   { href: `#${SECTION.contact}`, label: "Contact" },
 ];
 
