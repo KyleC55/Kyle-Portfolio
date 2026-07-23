@@ -35,6 +35,10 @@ export default async function handler(req, res) {
       hasToken: debug
         ? Boolean(process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN)
         : undefined,
+      // Names only (never values) of every Redis-ish env var actually present.
+      envKeys: debug
+        ? Object.keys(process.env).filter((k) => /REDIS|UPSTASH|KV/i.test(k))
+        : undefined,
     });
   }
 }
