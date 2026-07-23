@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { TbBroadcast } from "react-icons/tb";
 import * as THREE from "three";
 
 import { COUNTRY_CENTROIDS } from "@/data/countryCentroids";
@@ -182,68 +183,81 @@ function Globe({ counts }) {
   );
 }
 
-/* ---------- legend ---------- */
+/* ---------- visitor feed ---------- */
 
-function Legend({ counts }) {
-  const { total, top } = useMemo(() => {
+function VisitorFeed({ counts }) {
+  const { total, regions, rows } = useMemo(() => {
     const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
     const sum = entries.reduce((acc, [, n]) => acc + n, 0);
-    return { total: sum, top: entries.slice(0, 5) };
+    return { total: sum, regions: entries.length, rows: entries };
   }, [counts]);
 
-  const max = top[0]?.[1] || 1;
-
-  if (total === 0) {
-    return (
-      <p className="text-gray-400 text-sm">
-        No visits recorded yet — check back once the site is live.
-      </p>
-    );
-  }
-
   return (
-    <div className="w-full">
-      <div className="flex gap-8 mb-5">
-        <div>
-          <div className="text-3xl font-bold text-cyan-300 [text-shadow:_0_0_14px_rgba(34,211,238,0.5)]">
-            {total.toLocaleString()}
+    <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)] font-secondary">
+      {/* header */}
+      <div className="px-5 pt-5 pb-3 border-b border-white/10">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <TbBroadcast className="text-cyan-300 text-xl [filter:drop-shadow(0_0_6px_rgba(34,211,238,0.6))]" />
+            <span className="text-xl tracking-[0.25em] text-cyan-300 [text-shadow:_0_0_12px_rgba(34,211,238,0.5)]">
+              VISITOR FEED
+            </span>
           </div>
-          <div className="text-xs uppercase tracking-wider text-gray-400">
-            Total visits
-          </div>
+          <span className="text-lg text-gray-500 tracking-wider">
+            {regions} {regions === 1 ? "region" : "regions"}
+          </span>
         </div>
-        <div>
-          <div className="text-3xl font-bold text-purple-300 [text-shadow:_0_0_14px_rgba(168,85,247,0.5)]">
-            {Object.keys(counts).length}
-          </div>
-          <div className="text-xs uppercase tracking-wider text-gray-400">
-            Countries
-          </div>
-        </div>
+        <p className="mt-1 text-base text-gray-500 tracking-wide">
+          Sorted by session volume
+        </p>
       </div>
 
-      <div className="text-xs uppercase tracking-wider text-gray-400 mb-2">
-        Top locations
+      {/* column labels */}
+      <div className="flex items-center px-5 py-2.5 text-sm tracking-[0.15em] text-gray-500 border-b border-white/5">
+        <span className="flex-1">COUNTRY</span>
+        <span className="w-20 text-right">TOTAL</span>
       </div>
-      <ul className="space-y-2">
-        {top.map(([code, n]) => (
-          <li key={code} className="flex items-center gap-3">
-            <span className="text-lg leading-none w-6">{codeToFlag(code)}</span>
-            <span className="w-32 truncate text-sm text-gray-200">
-              {countryName(code)}
-            </span>
-            <span className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
-              <span
-                className="block h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-400"
-                style={{ width: `${Math.max(6, (n / max) * 100)}%` }}
-              />
-            </span>
-            <span className="w-10 text-right text-sm tabular-nums text-gray-300">
-              {n.toLocaleString()}
-            </span>
-          </li>
-        ))}
-      </ul>
+
+      {/* rows */}
+      {rows.length === 0 ? (
+        <div className="flex-1 flex items-center justify-center px-5 py-10 text-center">
+          <p className="text-gray-500 text-lg tracking-wide">
+            No visits recorded yet —<br />you could be the first.
+          </p>
+        </div>
+      ) : (
+        <ul className="flex-1 overflow-y-auto divide-y divide-white/[0.06]">
+          {rows.map(([code, n]) => (
+            <li
+              key={code}
+              className="flex items-center gap-3 px-5 py-3 transition-colors hover:bg-cyan-400/[0.04]"
+            >
+              <span className="text-xl leading-none w-7 shrink-0">
+                {codeToFlag(code)}
+              </span>
+              <span className="flex-1 min-w-0 truncate text-lg text-gray-100 tracking-wide">
+                {countryName(code)}
+              </span>
+              <span className="w-20 text-right text-lg tabular-nums text-cyan-200 [text-shadow:_0_0_8px_rgba(34,211,238,0.35)]">
+                {n.toLocaleString()}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* all-time total */}
+      <div className="px-5 py-4 border-t border-white/10 bg-black/30">
+        <div className="text-sm tracking-[0.2em] text-fuchsia-400/80">
+          ALL TIME
+        </div>
+        <div className="mt-0.5 flex items-baseline gap-2">
+          <span className="text-4xl leading-none text-fuchsia-300 [text-shadow:_0_0_16px_rgba(232,121,249,0.55)] tabular-nums">
+            {total.toLocaleString()}
+          </span>
+          <span className="text-lg text-gray-500 tracking-wide">visits</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -261,7 +275,7 @@ export default function VisitorGlobe() {
         A live look at where visitors around the world are exploring this site.
       </p>
 
-      <div className="mt-10 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
+      <div className="mt-10 grid md:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
         <div
           ref={panelRef}
           className="relative h-[420px] md:h-[560px] w-full rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)]"
@@ -300,11 +314,13 @@ export default function VisitorGlobe() {
           )}
         </div>
 
-        <div className="min-h-[200px] flex items-center">
+        <div className="h-[420px] md:h-[560px]">
           {counts ? (
-            <Legend counts={counts} />
+            <VisitorFeed counts={counts} />
           ) : (
-            <p className="text-gray-400 text-sm">Gathering visitor data…</p>
+            <div className="w-full h-full flex items-center justify-center rounded-2xl bg-[#0a0a0c] border border-cyan-400/30 font-secondary text-gray-500 text-lg tracking-wide">
+              Gathering visitor data…
+            </div>
           )}
         </div>
       </div>
