@@ -31,12 +31,10 @@ export default function IntroCard() {
           />
         </p>
         <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-          Kyle Chen is a rising Senior majoring in Computer Science at New York University (Expected 2027).
-          He has hands-on experience building full-stack web applications, having interned at Guavo Ai where
-          he shipped an admin dashboard and event-planning platform using React, TypeScript, GraphQL, and NestJS.
-        </p>
-        <p className="text-sm sm:text-base text-gray-300 leading-relaxed mt-3">
-          Kyle is passionate about building practical software at the intersection of machine learning and full-stack engineering.
+          Kyle Chen is a rising Senior majoring in Computer Science at New York University (Expected 2027),
+          joining Philips as an Intern this August. He has hands-on experience building full-stack web
+          applications, having previously interned at Guavo AI where he shipped an admin dashboard and
+          event-planning platform using React, TypeScript, GraphQL, and NestJS.
         </p>
       </div>
     </div>

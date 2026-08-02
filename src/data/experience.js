@@ -1,6 +1,17 @@
 export const experiences = [
   {
-    company: "Guavo Ai",
+    company: "Philips",
+    location: "Shanghai, CN",
+    role: "Incoming Intern",
+    dates: "Aug 2026 - Present",
+    theme: "philips",
+    logo: "/logos/philips.svg",
+    bullets: [
+      "",
+    ],
+  },
+  {
+    company: "Guavo AI",
     location: "New York, NY",
     role: "Software Engineering Intern",
     dates: "Aug 2025 - Apr 2026",
