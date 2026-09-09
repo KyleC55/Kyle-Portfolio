@@ -5,9 +5,10 @@ export const experiences = [
     role: "Incoming Intern",
     dates: "Aug 2026 - Present",
     theme: "philips",
-    logo: "/logos/philips.svg",
+    logo: "/logos/philips.png",
     bullets: [
-      "",
+      "Analyze Philips' partner due diligence workflows to identify process bottlenecks and opportunities for automation.",
+      "Build automation solutions for repetitive compliance tasks, reducing manual effort and improving the efficiency and consistency of partner screening.",
     ],
   },
   {

@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import { TbBroadcast } from "react-icons/tb";
 import * as THREE from "three";
 
@@ -8,6 +8,57 @@ import { COUNTRY_CENTROIDS } from "@/data/countryCentroids";
 import { ui } from "@/theme/ui";
 
 const GLOBE_RADIUS = 2;
+
+// Fresnel atmosphere glow — brightest at the planet's edge, fading inward.
+const ATMOS_VERT = /* glsl */ `
+  varying vec3 vNormal;
+  void main() {
+    vNormal = normalize(normalMatrix * normal);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+const ATMOS_FRAG = /* glsl */ `
+  varying vec3 vNormal;
+  void main() {
+    float intensity = pow(0.68 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.5);
+    gl_FragColor = vec4(0.32, 0.58, 1.0, 1.0) * intensity;
+  }
+`;
+
+/** Soft, drifting cloud cover painted procedurally (no texture file needed). */
+function createCloudTexture() {
+  const w = 2048;
+  const h = 1024;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.globalCompositeOperation = "lighter";
+
+  // Layered soft white blobs at a few scales -> puffy, uneven cloud bands.
+  const layers = [
+    { count: 90, min: 40, max: 120, alpha: 0.05 },
+    { count: 140, min: 20, max: 70, alpha: 0.06 },
+    { count: 220, min: 8, max: 34, alpha: 0.07 },
+  ];
+  for (const L of layers) {
+    for (let i = 0; i < L.count; i++) {
+      const x = Math.random() * w;
+      // bias clouds toward mid-latitudes, thin near the poles
+      const y = h * (0.12 + Math.random() * 0.76);
+      const r = L.min + Math.random() * (L.max - L.min);
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, `rgba(255,255,255,${L.alpha})`);
+      g.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+  }
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.anisotropy = 4;
+  return tex;
+}
 
 
 /** Convert lat/lng (degrees) to a point on a sphere of the given radius. */
@@ -141,10 +192,14 @@ function Marker({ position, scale, phase }) {
 
 function Globe({ counts }) {
   const groupRef = useRef();
+  const cloudRef = useRef();
   const colorMap = useLoader(THREE.TextureLoader, "/textures/earth-blue-marble.jpg");
+  const cloudMap = useMemo(() => createCloudTexture(), []);
 
   useFrame((_, delta) => {
     if (groupRef.current) groupRef.current.rotation.y += delta * 0.08;
+    // Clouds drift a touch faster than the surface for parallax.
+    if (cloudRef.current) cloudRef.current.rotation.y += delta * 0.012;
   });
 
   const markers = useMemo(() => {
@@ -162,24 +217,52 @@ function Globe({ counts }) {
   }, [counts]);
 
   return (
-    <group ref={groupRef}>
-      {/* textured earth */}
-      <mesh>
+    <>
+      {/* Atmospheric glow — a slightly larger shell, brightest at the limb. */}
+      <mesh scale={1.16}>
         <sphereGeometry args={[GLOBE_RADIUS, 64, 64]} />
-        <meshStandardMaterial
-          map={colorMap}
-          emissiveMap={colorMap}
-          emissive="#88aaff"
-          emissiveIntensity={0.18}
-          roughness={0.75}
-          metalness={0.1}
+        <shaderMaterial
+          vertexShader={ATMOS_VERT}
+          fragmentShader={ATMOS_FRAG}
+          blending={THREE.AdditiveBlending}
+          side={THREE.BackSide}
+          transparent
+          depthWrite={false}
         />
       </mesh>
 
-      {markers.map((m) => (
-        <Marker key={m.code} position={m.pos} scale={m.scale} phase={m.phase} />
-      ))}
-    </group>
+      <group ref={groupRef}>
+        {/* textured earth — faint emissive keeps the night side readable */}
+        <mesh>
+          <sphereGeometry args={[GLOBE_RADIUS, 64, 64]} />
+          <meshStandardMaterial
+            map={colorMap}
+            emissiveMap={colorMap}
+            emissive="#4a6fbf"
+            emissiveIntensity={0.07}
+            roughness={0.85}
+            metalness={0.05}
+          />
+        </mesh>
+
+        {/* drifting cloud layer */}
+        <mesh ref={cloudRef} scale={1.012}>
+          <sphereGeometry args={[GLOBE_RADIUS, 64, 64]} />
+          <meshStandardMaterial
+            map={cloudMap}
+            transparent
+            opacity={0.9}
+            depthWrite={false}
+            roughness={1}
+            metalness={0}
+          />
+        </mesh>
+
+        {markers.map((m) => (
+          <Marker key={m.code} position={m.pos} scale={m.scale} phase={m.phase} />
+        ))}
+      </group>
+    </>
   );
 }
 
@@ -207,9 +290,6 @@ function VisitorFeed({ counts }) {
             {regions} {regions === 1 ? "region" : "regions"}
           </span>
         </div>
-        <p className="mt-1 text-base text-gray-500 tracking-wide">
-          Sorted by session volume
-        </p>
       </div>
 
       {/* column labels */}
@@ -288,9 +368,14 @@ export default function VisitorGlobe() {
               camera={{ position: [0, 0, 5.2], fov: 45 }}
               gl={{ antialias: true, alpha: true }}
             >
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[5, 3, 5]} intensity={1.6} color="#e8eeff" />
-              <pointLight position={[-6, -2, -4]} color="#a855f7" intensity={0.7} distance={20} />
+              {/* Sun — strong key light gives a real day/night terminator */}
+              <directionalLight position={[5, 3, 5]} intensity={2.4} color="#fff6e8" />
+              {/* Low ambient so the night side reads without washing out shading */}
+              <ambientLight intensity={0.14} />
+              {/* Cool rim from behind for a subtle atmospheric edge */}
+              <pointLight position={[-6, -2, -4]} color="#3b82f6" intensity={0.6} distance={22} />
+              {/* Stars for deep-space context */}
+              <Stars radius={90} depth={50} count={2500} factor={3} saturation={0} fade speed={0.3} />
               {/* Render the globe right away; markers appear once stats arrive. */}
               <Suspense fallback={null}>
                 <Globe counts={counts || {}} />
