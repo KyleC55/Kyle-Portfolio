@@ -9,16 +9,16 @@ export const ui = {
   /** max-width content column used on Skills, Experience, Contact */
   pageContainer: "max-w-4xl mx-auto px-6 md:px-10 py-20",
 
-  /** Pixel heading style (Press Start 2P) */
+  /** Section heading — white text with a purple neon glow (Projects-style) */
   sectionHeading:
-    "text-purple-300 text-3xl md:text-4xl font-bold font-primary [text-shadow:_0_0_20px_rgba(168,85,247,0.45)]",
+    "text-white text-3xl md:text-4xl font-bold font-cursive [text-shadow:_0_0_4px_#d8b4fe,_0_0_14px_rgba(168,85,247,0.55),_0_0_28px_rgba(168,85,247,0.32)]",
 
   sectionIntro: "text-gray-300 mt-3 max-w-2xl",
 
   introReadable: "text-gray-200 mt-3 max-w-2xl",
 
-  neonHeadingContact: `font-bold font-primary text-3xl md:text-4xl text-purple-300
-    [text-shadow:_0_0_2px_#d8b4fe,_0_0_14px_rgba(168,85,247,0.5)]`,
+  neonHeadingContact: `font-bold font-cursive text-3xl md:text-4xl text-white
+    [text-shadow:_0_0_4px_#d8b4fe,_0_0_14px_rgba(168,85,247,0.55),_0_0_28px_rgba(168,85,247,0.32)]`,
 
   formPanel:
     "mt-10 bg-[#111] border border-[#2a2a2a] rounded-2xl p-6 md:p-8 shadow-[0_0_20px_rgba(34,211,238,0.12)]",

@@ -2,7 +2,7 @@ export const experiences = [
   {
     company: "Philips",
     location: "Shanghai, CN",
-    role: "Incoming Intern",
+    role: "Intern - Screening Compliance",
     dates: "Aug 2026 - Present",
     theme: "philips",
     logo: "/logos/philips.png",
