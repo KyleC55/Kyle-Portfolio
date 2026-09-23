@@ -314,10 +314,16 @@ function MoonScene() {
       {/* Saturn system, leaned to its ~26.7° axial tilt. Planet, rings and
           moon all share the equatorial plane. */}
       <group rotation={[0.12, 0, 0.466]}>
-        {/* Planet */}
+        {/* Planet — material color multiplies the texture down so it stays
+            dark enough to read text over */}
         <mesh ref={planetRef}>
           <sphereGeometry args={[PLANET_R, 128, 128]} />
-          <meshStandardMaterial map={planetTex} roughness={1} metalness={0} />
+          <meshStandardMaterial
+            map={planetTex}
+            color="#5a5a5e"
+            roughness={1}
+            metalness={0}
+          />
         </mesh>
 
         {/* Rings, flat in the equatorial plane */}
@@ -350,11 +356,11 @@ function MoonScene() {
 
       {/* Sun key light — repositioned each frame to the viewer's side so the
           face we see stays lit while the limb keeps a soft terminator */}
-      <directionalLight ref={sunRef} position={[10, 9, 6]} intensity={3.2} color="#fff4e2" />
+      <directionalLight ref={sunRef} position={[10, 9, 6]} intensity={2.2} color="#fff4e2" />
       {/* Soft fill so shadow sides read as dim, not pure black */}
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.16} />
       {/* Cool sky / warm bounce fill for gentle, natural shaping */}
-      <hemisphereLight args={["#8899bb", "#2a2418", 0.35]} />
+      <hemisphereLight args={["#8899bb", "#2a2418", 0.2]} />
 
       {/* Dense far starfield */}
       <Stars
@@ -386,6 +392,8 @@ export default function SpaceBackground() {
       <Canvas camera={{ position: [0, 2.6, 13], fov: 55 }}>
         <MoonScene />
       </Canvas>
+      {/* Dark scrim keeps foreground text readable over the scene */}
+      <div className="absolute inset-0 bg-black/45" />
     </div>
   );
 }
