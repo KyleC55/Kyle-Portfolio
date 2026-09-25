@@ -3,16 +3,22 @@ import { ui } from "@/theme/ui";
 
 const CARD_THEMES = {
   default: {
-    card: "bg-[#111] border-[#2a2a2a] border-l-purple-500/60 shadow-[0_0_20px_rgba(168,85,247,0.12)]",
+    card: "bg-[#111] border-[#2a2a2a] border-l-indigo-500/60 shadow-[0_0_20px_rgba(99,102,241,0.12)]",
     role: "text-white",
     dates: "text-gray-400",
-    bullet: "bg-purple-400",
+    bullet: "bg-indigo-400",
   },
   philips: {
     card: "bg-gradient-to-br from-[#0a1a33] to-[#0b1220] border-[#1c3a5e] border-l-[#0B5ED7] shadow-[0_0_24px_rgba(11,94,215,0.28)]",
     role: "text-[#5eb3f5]",
     dates: "text-[#7fb2e0]",
     bullet: "bg-[#5eb3f5]",
+  },
+  guavo: {
+    card: "bg-gradient-to-br from-[#111f0a] to-[#0b1207] border-[#2c4a1c] border-l-[#5a9e1f] shadow-[0_0_24px_rgba(90,158,31,0.26)]",
+    role: "text-[#8fce3f]",
+    dates: "text-[#a7c47a]",
+    bullet: "bg-[#8fce3f]",
   },
 };
 

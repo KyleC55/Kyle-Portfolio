@@ -35,7 +35,7 @@ body {
     background-color: #000000;
 }
 
-/* Drop browser default focus outline on text fields (Contact form uses custom cyan glow). */
+/* Drop browser default focus outline on text fields (Contact form uses custom blue glow). */
 input:focus,
 textarea:focus {
     outline: none;

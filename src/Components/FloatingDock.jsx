@@ -17,10 +17,10 @@ const ICONS = {
 };
 
 const pillIconClass =
-  "p-3 rounded-full text-gray-100 border border-cyan-400/55 bg-black transition-all duration-200 " +
-  "hover:border-cyan-300 hover:text-cyan-50 " +
-  "hover:shadow-[0_0_0_1px_rgba(34,211,238,0.65),0_0_14px_rgba(56,189,248,0.35)] " +
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400";
+  "p-3 rounded-full text-gray-100 border border-blue-400/55 bg-black transition-all duration-200 " +
+  "hover:border-blue-300 hover:text-blue-50 " +
+  "hover:shadow-[0_0_0_1px_rgba(11,94,215,0.65),0_0_14px_rgba(59,130,246,0.35)] " +
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400";
 
 function DockLink({ href, label, Icon, external }) {
   return (
@@ -49,7 +49,7 @@ export default function FloatingDock() {
         <div className="p-4 inline-flex shrink-0">
           <div
             className="inline-flex min-w-max items-center gap-2 pl-2.5 pr-3.5 py-2 rounded-full bg-black
-              border border-cyan-400/75 shadow-[0_12px_40px_rgba(0,0,0,0.85)]"
+              border border-blue-400/75 shadow-[0_12px_40px_rgba(0,0,0,0.85)]"
           >
             <DockLink
               href={homeHref}
@@ -57,7 +57,7 @@ export default function FloatingDock() {
               Icon={ICONS[DOCK_LINK_KINDS.home]}
               external={false}
             />
-            <span className="w-px h-7 mx-0.5 shrink-0 bg-cyan-500/50" aria-hidden />
+            <span className="w-px h-7 mx-0.5 shrink-0 bg-blue-500/50" aria-hidden />
 
             {DOCK_EXTERNAL_LINKS.map((item) => (
               <DockLink

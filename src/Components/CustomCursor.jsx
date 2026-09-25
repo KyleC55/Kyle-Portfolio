@@ -26,16 +26,16 @@ export default function CustomCursor() {
       if (e.target.closest('a, button, [role="button"], input, textarea')) {
         circle.style.width = "52px";
         circle.style.height = "52px";
-        circle.style.borderColor = "rgba(168,85,247,0.8)";
-        circle.style.boxShadow = "0 0 12px rgba(168,85,247,0.5), inset 0 0 12px rgba(168,85,247,0.1)";
+        circle.style.borderColor = "rgba(99,102,241,0.8)";
+        circle.style.boxShadow = "0 0 12px rgba(99,102,241,0.5), inset 0 0 12px rgba(99,102,241,0.1)";
       }
     };
     const onOut = (e) => {
       if (e.target.closest('a, button, [role="button"], input, textarea')) {
         circle.style.width = "36px";
         circle.style.height = "36px";
-        circle.style.borderColor = "rgba(34,211,238,0.8)";
-        circle.style.boxShadow = "0 0 10px rgba(34,211,238,0.4), inset 0 0 10px rgba(34,211,238,0.08)";
+        circle.style.borderColor = "rgba(11,94,215,0.8)";
+        circle.style.boxShadow = "0 0 10px rgba(11,94,215,0.4), inset 0 0 10px rgba(11,94,215,0.08)";
       }
     };
 
@@ -60,8 +60,8 @@ export default function CustomCursor() {
         width: 36,
         height: 36,
         borderRadius: "50%",
-        border: "1.5px solid rgba(34,211,238,0.8)",
-        boxShadow: "0 0 10px rgba(34,211,238,0.4), inset 0 0 10px rgba(34,211,238,0.08)",
+        border: "1.5px solid rgba(11,94,215,0.8)",
+        boxShadow: "0 0 10px rgba(11,94,215,0.4), inset 0 0 10px rgba(11,94,215,0.08)",
         pointerEvents: "none",
         zIndex: 9999,
         willChange: "transform",

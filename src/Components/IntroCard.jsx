@@ -12,16 +12,16 @@ export default function IntroCard() {
           e.currentTarget.onerror = null;
           e.currentTarget.src = ASSETS.photoFallback;
         }}
-        className="w-44 sm:w-52 shrink-0 aspect-[3/4] object-cover object-top rounded-xl shadow-[0_0_24px_rgba(34,211,238,0.15)] transition-transform duration-300 group-hover:scale-105"
+        className="w-44 sm:w-52 shrink-0 aspect-[3/4] object-cover object-top rounded-xl shadow-[0_0_24px_rgba(11,94,215,0.15)] transition-transform duration-300 group-hover:scale-105"
       />
       <div className="flex flex-col justify-center text-left w-full max-w-md">
         <h1
           className="text-white font-bold text-2xl sm:text-3xl font-tertiary
-            [text-shadow:_0_0_2px_#d8b4fe,_0_0_8px_#a855f7,_0_0_20px_rgba(168,85,247,0.5)]"
+            [text-shadow:_0_0_2px_#a5b4fc,_0_0_8px_#6366f1,_0_0_20px_rgba(99,102,241,0.5)]"
         >
           This Is {PROFILE.displayName}
         </h1>
-        <p className="text-base sm:text-lg font-bold font-cursive mt-2 mb-5 text-cyan-100">
+        <p className="text-base sm:text-lg font-bold font-cursive mt-2 mb-5 text-blue-100">
           <ReactTyped
             strings={[
               "A passionate Computer Science Major @ NYU",
@@ -32,7 +32,7 @@ export default function IntroCard() {
         </p>
         <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
           Kyle Chen is a rising Senior majoring in Computer Science at New York University (Expected 2027),
-          joining Philips as an Intern this August. He has hands-on experience building full-stack web
+          currently interning at Philips. He has hands-on experience building full-stack web
           applications, having previously interned at Guavo AI where he shipped an admin dashboard and
           event-planning platform using React, TypeScript, GraphQL, and NestJS.
         </p>

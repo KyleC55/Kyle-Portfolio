@@ -16,6 +16,7 @@ export const experiences = [
     location: "New York, NY",
     role: "Software Engineering Intern",
     dates: "Aug 2025 - Apr 2026",
+    theme: "guavo",
     logo: "/logos/guavo.png",
     bullets: [
       "Designed and shipped a full-stack admin dashboard enabling internal management of companies, members, and subscription tiers.",

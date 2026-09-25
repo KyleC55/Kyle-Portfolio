@@ -8,7 +8,7 @@ export default function ProjectPage() {
     <div className="max-w-4xl w-full mx-auto flex flex-col items-center justify-start px-6 md:px-10 py-20 text-white gap-6">
       <h1
         className="text-5xl sm:text-6xl font-cursive font-bold text-center text-white
-          [text-shadow:_0_0_4px_#22d3ee,_0_0_12px_rgba(34,211,238,0.55),_0_0_24px_rgba(56,189,248,0.28)]"
+          [text-shadow:_0_0_4px_#0B5ED7,_0_0_12px_rgba(11,94,215,0.55),_0_0_24px_rgba(59,130,246,0.28)]"
       >
         Projects
       </h1>
@@ -22,7 +22,7 @@ export default function ProjectPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub projects"
-          className="text-3xl hover:text-cyan-300 transition-colors"
+          className="text-3xl hover:text-blue-300 transition-colors"
         >
           <AiFillGithub />
         </a>

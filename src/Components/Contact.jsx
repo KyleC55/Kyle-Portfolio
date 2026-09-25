@@ -64,7 +64,7 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full md:w-fit px-6 py-3 rounded-lg bg-cyan-400 text-black font-semibold hover:bg-cyan-300 transition"
+              className="w-full md:w-fit px-6 py-3 rounded-lg bg-blue-400 text-black font-semibold hover:bg-blue-300 transition"
             >
               Send Email
             </button>

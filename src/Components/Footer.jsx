@@ -26,7 +26,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-cyan-300 transition-colors text-sm"
+                      className="text-gray-300 hover:text-blue-300 transition-colors text-sm"
                     >
                       {link.label}
                     </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="p-2 rounded-lg border border-white/15 text-gray-300 hover:text-cyan-300 hover:border-cyan-400/50 transition-all"
+                className="p-2 rounded-lg border border-white/15 text-gray-300 hover:text-blue-300 hover:border-blue-400/50 transition-all"
               >
                 <AiFillLinkedin size={20} />
               </a>
@@ -50,7 +50,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="p-2 rounded-lg border border-white/15 text-gray-300 hover:text-cyan-300 hover:border-cyan-400/50 transition-all"
+                className="p-2 rounded-lg border border-white/15 text-gray-300 hover:text-blue-300 hover:border-blue-400/50 transition-all"
               >
                 <AiFillGithub size={20} />
               </a>

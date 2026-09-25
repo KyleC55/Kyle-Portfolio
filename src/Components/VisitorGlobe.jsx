@@ -172,13 +172,13 @@ function Marker({ position, scale, phase }) {
       {/* bright core */}
       <mesh scale={scale}>
         <sphereGeometry args={[0.03, 12, 12]} />
-        <meshBasicMaterial color="#a5f3fc" toneMapped={false} />
+        <meshBasicMaterial color="#93c5fd" toneMapped={false} />
       </mesh>
       {/* soft, pulsing halo */}
       <mesh ref={haloRef} scale={scale * 2.2}>
         <sphereGeometry args={[0.03, 12, 12]} />
         <meshBasicMaterial
-          color="#22d3ee"
+          color="#0B5ED7"
           transparent
           opacity={0.25}
           blending={THREE.AdditiveBlending}
@@ -276,13 +276,13 @@ function VisitorFeed({ counts }) {
   }, [counts]);
 
   return (
-    <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)] font-secondary">
+    <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0c] border border-blue-400/30 shadow-[0_0_32px_rgba(11,94,215,0.14),0_0_48px_rgba(59,130,246,0.12),inset_0_1px_0_rgba(11,94,215,0.08)] font-secondary">
       {/* header */}
       <div className="px-5 pt-5 pb-3 border-b border-white/10">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <TbBroadcast className="text-cyan-300 text-xl [filter:drop-shadow(0_0_6px_rgba(34,211,238,0.6))]" />
-            <span className="text-xl tracking-[0.25em] text-cyan-300 [text-shadow:_0_0_12px_rgba(34,211,238,0.5)]">
+            <TbBroadcast className="text-blue-300 text-xl [filter:drop-shadow(0_0_6px_rgba(11,94,215,0.6))]" />
+            <span className="text-xl tracking-[0.25em] text-blue-300 [text-shadow:_0_0_12px_rgba(11,94,215,0.5)]">
               VISITOR FEED
             </span>
           </div>
@@ -310,7 +310,7 @@ function VisitorFeed({ counts }) {
           {rows.map(([code, n]) => (
             <li
               key={code}
-              className="flex items-center gap-3 px-5 py-3 transition-colors hover:bg-cyan-400/[0.04]"
+              className="flex items-center gap-3 px-5 py-3 transition-colors hover:bg-blue-400/[0.04]"
             >
               <span className="text-xl leading-none w-7 shrink-0">
                 {codeToFlag(code)}
@@ -318,7 +318,7 @@ function VisitorFeed({ counts }) {
               <span className="flex-1 min-w-0 truncate text-lg text-gray-100 tracking-wide">
                 {countryName(code)}
               </span>
-              <span className="w-20 text-right text-lg tabular-nums text-cyan-200 [text-shadow:_0_0_8px_rgba(34,211,238,0.35)]">
+              <span className="w-20 text-right text-lg tabular-nums text-blue-200 [text-shadow:_0_0_8px_rgba(11,94,215,0.35)]">
                 {n.toLocaleString()}
               </span>
             </li>
@@ -328,11 +328,11 @@ function VisitorFeed({ counts }) {
 
       {/* all-time total */}
       <div className="px-5 py-4 border-t border-white/10 bg-black/30">
-        <div className="text-sm tracking-[0.2em] text-fuchsia-400/80">
+        <div className="text-sm tracking-[0.2em] text-indigo-400/80">
           ALL TIME
         </div>
         <div className="mt-0.5 flex items-baseline gap-2">
-          <span className="text-4xl leading-none text-fuchsia-300 [text-shadow:_0_0_16px_rgba(232,121,249,0.55)] tabular-nums">
+          <span className="text-4xl leading-none text-indigo-300 [text-shadow:_0_0_16px_rgba(129,140,248,0.55)] tabular-nums">
             {total.toLocaleString()}
           </span>
           <span className="text-lg text-gray-500 tracking-wide">visits</span>
@@ -358,7 +358,7 @@ export default function VisitorGlobe() {
       <div className="mt-10 grid md:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
         <div
           ref={panelRef}
-          className="relative h-[420px] md:h-[560px] w-full rounded-2xl overflow-hidden bg-[#0a0a0c] border border-cyan-400/30 shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)]"
+          className="relative h-[420px] md:h-[560px] w-full rounded-2xl overflow-hidden bg-[#0a0a0c] border border-blue-400/30 shadow-[0_0_32px_rgba(11,94,215,0.14),0_0_48px_rgba(59,130,246,0.12),inset_0_1px_0_rgba(11,94,215,0.08)]"
         >
           {/* Mount the WebGL globe only once scrolled near view — keeps the
               texture + GPU work off the initial page load. */}
@@ -392,7 +392,7 @@ export default function VisitorGlobe() {
           {(!inView || counts === null) && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="flex items-center gap-3 rounded-full bg-black/40 px-4 py-2 backdrop-blur-sm">
-                <span className="h-3 w-3 rounded-full border-2 border-cyan-400/40 border-t-cyan-300 animate-spin" />
+                <span className="h-3 w-3 rounded-full border-2 border-blue-400/40 border-t-blue-300 animate-spin" />
                 <span className="text-sm text-gray-300">Loading visitor map…</span>
               </div>
             </div>
@@ -403,7 +403,7 @@ export default function VisitorGlobe() {
           {counts ? (
             <VisitorFeed counts={counts} />
           ) : (
-            <div className="w-full h-full flex items-center justify-center rounded-2xl bg-[#0a0a0c] border border-cyan-400/30 font-secondary text-gray-500 text-lg tracking-wide">
+            <div className="w-full h-full flex items-center justify-center rounded-2xl bg-[#0a0a0c] border border-blue-400/30 font-secondary text-gray-500 text-lg tracking-wide">
               Gathering visitor data…
             </div>
           )}

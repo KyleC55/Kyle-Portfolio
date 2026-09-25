@@ -17,8 +17,8 @@ export default function ProjectTabs() {
             onClick={() => setActiveIndex(index)}
             className={`px-5 py-2 rounded-full text-sm sm:text-base font-semibold border transition duration-200 ${
               activeIndex === index
-                ? "bg-cyan-400 text-black border-cyan-300"
-                : "bg-black border-[#666] text-white hover:border-cyan-400 hover:text-cyan-300"
+                ? "bg-blue-400 text-black border-blue-300"
+                : "bg-black border-[#666] text-white hover:border-blue-400 hover:text-blue-300"
             }`}
           >
             {project.title}
@@ -27,13 +27,13 @@ export default function ProjectTabs() {
       </div>
 
       <div
-        className="w-full max-w-4xl px-6 py-6 rounded-2xl text-left leading-relaxed mt-2 bg-[#0a0a0c] border border-cyan-400/30
-          shadow-[0_0_32px_rgba(34,211,238,0.14),0_0_48px_rgba(56,189,248,0.12),inset_0_1px_0_rgba(34,211,238,0.08)]"
+        className="w-full max-w-4xl px-6 py-6 rounded-2xl text-left leading-relaxed mt-2 bg-[#0a0a0c] border border-blue-400/30
+          shadow-[0_0_32px_rgba(11,94,215,0.14),0_0_48px_rgba(59,130,246,0.12),inset_0_1px_0_rgba(11,94,215,0.08)]"
       >
-        <h2 className="text-2xl font-bold text-white [text-shadow:_0_0_14px_rgba(34,211,238,0.4)]">
+        <h2 className="text-2xl font-bold text-white [text-shadow:_0_0_14px_rgba(11,94,215,0.4)]">
           {activeProject.title}
         </h2>
-        <p className="text-sm text-purple-200/80 mt-1 [text-shadow:_0_0_10px_rgba(168,85,247,0.4)]">
+        <p className="text-sm text-indigo-200/80 mt-1 [text-shadow:_0_0_10px_rgba(99,102,241,0.4)]">
           {activeProject.subtitle}
         </p>
         <p className="text-gray-200 mt-4">{activeProject.description}</p>
@@ -45,13 +45,13 @@ export default function ProjectTabs() {
               className={`relative pl-4 py-2.5 rounded-lg border bg-black/40 backdrop-blur-sm
                 ${
                   i % 2 === 0
-                    ? "border-cyan-400/50 text-cyan-50 [text-shadow:_0_0_14px_rgba(34,211,238,0.55)] shadow-[0_0_20px_rgba(34,211,238,0.14)]"
-                    : "border-purple-400/50 text-purple-50 [text-shadow:_0_0_14px_rgba(168,85,247,0.55)] shadow-[0_0_20px_rgba(168,85,247,0.14)]"
+                    ? "border-blue-400/50 text-blue-50 [text-shadow:_0_0_14px_rgba(11,94,215,0.55)] shadow-[0_0_20px_rgba(11,94,215,0.14)]"
+                    : "border-indigo-400/50 text-indigo-50 [text-shadow:_0_0_14px_rgba(99,102,241,0.55)] shadow-[0_0_20px_rgba(99,102,241,0.14)]"
                 }`}
             >
               <span
                 className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 h-[70%] rounded-full ${
-                  i % 2 === 0 ? "bg-cyan-400 shadow-[0_0_12px_#22d3ee]" : "bg-purple-400 shadow-[0_0_12px_#c084fc]"
+                  i % 2 === 0 ? "bg-blue-400 shadow-[0_0_12px_#0B5ED7]" : "bg-indigo-400 shadow-[0_0_12px_#c084fc]"
                 }`}
                 aria-hidden
               />
@@ -67,7 +67,7 @@ export default function ProjectTabs() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#3a3a3a] hover:border-cyan-400 hover:text-cyan-300 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#3a3a3a] hover:border-blue-400 hover:text-blue-300 transition-colors"
             >
               {link.type === "github" ? (
                 <AiFillGithub />
